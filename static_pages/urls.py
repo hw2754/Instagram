@@ -13,13 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# This is the global view setting, each app can have a urls.py for local view setting
+# This is the local view setting (app level)
 from django.contrib import admin
 from django.urls import include, path
-
+from static_pages.views import HelloWorld
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    #Including another URLconf from an app
-    #jump to the urlconfig in the app level
-    path('static_pages/', include('static_pages.urls')),
+    path('',HelloWorld.as_view(), name='helloworld')
 ]
