@@ -1,0 +1,21 @@
+<!--show images in this page-->
+{% load static %}
+
+<div>
+    <a href="{% url 'new_post' %}"> Make Post </a>
+</div>
+
+
+<div>
+    <!--ListView put model into object_list and send to the template-->
+    <!--ListView has self.object_list-->
+    {% for post in object_list %}
+        <!-- template language post_detail is the nickname of corresponding path-->
+        <a href="{% url 'post_detail' post.id %}"> 
+            <!-- <img src="{{post.image}}"> is not right -->
+            <!-- There are two method to solve this problem-->
+            <!-- First is add forward slash <img src="/{{post.image}}">-->
+            <img src="/{{post.image}}" width=300 height=300>
+        </a>
+    {% endfor %}
+</div>

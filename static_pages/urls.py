@@ -16,7 +16,14 @@ Including another URLconf
 # This is the local view setting (app level)
 from django.contrib import admin
 from django.urls import include, path
-from static_pages.views import HelloWorld
+from static_pages.views import HelloWorld,PostView,PostDetailView
+from static_pages.views import PostCreateView,PostUpdateView,PostDeleteView
 urlpatterns = [
-    path('',HelloWorld.as_view(), name='helloworld')
+    path('',HelloWorld.as_view(), name='helloworld'),
+    path('posts/',PostView.as_view(), name='posts'),
+    #find the detail info of image with id(primary key) = pk
+    path('posts/<int:pk>/',PostDetailView.as_view(), name='post_detail'),
+    path('posts/new/',PostCreateView.as_view(), name='new_post'),
+    path('posts/update/<int:pk>/',PostUpdateView.as_view(), name='update_post'),
+    path('posts/delete/<int:pk>/',PostDeleteView.as_view(), name='delete_post'),
 ]

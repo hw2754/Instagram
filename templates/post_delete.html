@@ -1,0 +1,9 @@
+<h1>Delete Post</h1>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    <!-- {% means template language  django-->
+    {% csrf_token %} <!-- ensure security of form-->
+    <!-- {{ uses the form from view--> <!-- as_p display all fields as paragraph-->
+    <p> Are you really want to delete "{{post.title}}" ?</p>
+    <button type="submit"> Delete </button>
+</form>
