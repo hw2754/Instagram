@@ -125,3 +125,11 @@ STATIC_URL = '/static/'
 
 # URL of getting static files
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# when user login/logout, website jump to the target page
+LOGIN_REDIRECT_URL = "posts"
+LOGOUT_REDIRECT_URL = "posts"
+
+# use usermodel we defined, not in auth
+AUTH_USER_MODEL = 'static_pages.InstaUser'
+

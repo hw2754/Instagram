@@ -16,10 +16,13 @@ Including another URLconf
 # This is the global view setting, each app can have a urls.py for local view setting
 from django.contrib import admin
 from django.urls import include, path
+from static_pages.views import SignUp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #Including another URLconf from an app
     #jump to the urlconfig in the app level
     path('static_pages/', include('static_pages.urls')),
+    path('auth/', include('django.contrib.auth.urls')),
+    path('auth/signup/', SignUp.as_view(), name = 'signup'),
 ]

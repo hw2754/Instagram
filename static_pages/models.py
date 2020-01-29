@@ -1,6 +1,7 @@
 from django.db import models
 from imagekit.models import ProcessedImageField
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 # define a kind of data "Post", it has two attributes
 class Post(models.Model):
@@ -22,3 +23,13 @@ class Post(models.Model):
         #get total url from target page nickname
         #self.id is the id of current object
         return reverse("post_detail", args=[str(self.id)])
+
+class InstaUser(AbstractUser):
+    profile_img = ProcessedImageField(
+        #when user upload a image, it will be stored in this path
+        upload_to = 'static/images/profiles',
+        format = 'JPEG',
+        options = {'quality': 100},
+        blank=True,
+        null=True,
+    )
