@@ -12,7 +12,7 @@ from static_pages.forms import CustomUserCreationForm
 class HelloWorld(TemplateView):
     # This time we connect URL with static page
     # function get_template_name()
-    template_name='test.html'
+    template_name='index.html'
 
 
 # Two views implement Master-detail structure 

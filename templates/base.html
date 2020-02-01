@@ -1,0 +1,42 @@
+<!-- base.html is a fundmental style for each page, like the
+parent class(base.html) of child class(each individual page)-->
+<html>
+    <!-- head contains some meta data -->
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <!-- setting the page when using cellphone to visit -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Insta-like</title>
+        <!-- page style defined in the CSS-->
+        <!-- static is the static folder defined in the setting.py-->
+        <!-- using front-end library like bootstrap and font-awesome-4.6.3-->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/font-awesome-4.6.3/css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        {% load static %}
+        <!-- include the header -->
+        {% include 'header.html' %}
+        
+        <div class="content-wrapper">
+            <div class="container">
+                <!-- specific content come from each page-->
+                {% block content %}
+                {% endblock content%}
+            </div>
+        </div>
+        
+        <!-- common script for all pages -->
+        <script type="text/javascript" src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ajax-csrf-auth.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+        
+        <!-- specific script for each page individually-->
+        {% block extrascript %}
+        {% endblock %}
+
+    </body>
+</html>

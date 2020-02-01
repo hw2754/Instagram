@@ -19,7 +19,7 @@ from django.urls import include, path
 from static_pages.views import HelloWorld,PostView,PostDetailView
 from static_pages.views import PostCreateView,PostUpdateView,PostDeleteView
 urlpatterns = [
-    path('',HelloWorld.as_view(), name='helloworld'),
+    path('',PostView.as_view(), name='helloworld'),
     path('posts/',PostView.as_view(), name='posts'),
     #find the detail info of image with id(primary key) = pk
     path('posts/<int:pk>/',PostDetailView.as_view(), name='post_detail'),

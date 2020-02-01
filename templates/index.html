@@ -1,39 +1,54 @@
 <!--show images in this page-->
+{% extends 'base.html' %}
+
+{% block content %}
+<!--
 {% load static %}
-
-<ul>
-    {% if request.user.is_authenticated %}
-       <li>
-           Hello,{{request.user.username}}
-       </li>
-       <li>
-        <a href="{% url 'logout' %}">  Logout </a>
-    </li>
-    {% else %}
-       <li>
-           <a href="{% url 'login' %}"> Login </a>
-       </li>
-       <li>
-           <a href="{% url 'signup' %}"> Sign up </a>
-       </li>
-    {% endif %}
-</ul>
-
 <div>
     <a href="{% url 'new_post' %}"> Make Post </a>
 </div>
-
-
 <div>
-    <!--ListView put model into object_list and send to the template-->
-    <!--ListView has self.object_list-->
+    ListView put model into object_list and send to the template
+    ListView has self.object_list
     {% for post in object_list %}
-        <!-- template language post_detail is the nickname of corresponding path-->
+        template language post_detail is the nickname of corresponding path
         <a href="{% url 'post_detail' post.id %}"> 
-            <!-- <img src="{{post.image}}"> is not right -->
-            <!-- There are two method to solve this problem-->
-            <!-- First is add forward slash <img src="/{{post.image}}">-->
+            <img src="{{post.image}}"> is not right 
+            There are two method to solve this problem
+            First is add forward slash <img src="/{{post.image}}">
             <img src="/{{post.image}}" width=300 height=300>
         </a>
     {% endfor %}
 </div>
+-->
+
+<div class="cards-listing">
+    {% for post in object_list %}
+        <!-- put some posts in one row -->
+        <!-- contains self-adapting to the layout-->
+        <div class="row">
+            <div class="card view-update {{ post.pk }}">
+                <!-- user info of each post-->
+                <div class="card__panel-head">
+                    <div class="poster__info">
+                        <a href="{% url 'profile' post.author.pk %}" class="poster__name">
+                            {% if post.author.profile_pic %}
+                                <img class="poster__profilepic" src="{{ post.author.profile_pic.url }}">
+                            {% endif %}
+                            {{ post.author.username }}
+                        </a>
+                        <span class="poster__timestamp">
+                            {{ post.posted_on|timesince }}
+                        </span>
+                    </div>
+                </div>
+                <a href="{% url 'post_detail' post.pk %}">
+                    <!-- src="{{ post.image.url}}" is not work, I do not know why-->
+                    <img class="card__main-image" src="/{{post.image}}">
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
